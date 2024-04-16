@@ -1,43 +1,71 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
+public enum DraggedDirection
+{
+    Up,
+    Down,
+    Right,
+    Left
+}
 public class WhiteBallMovement : MonoBehaviour
 {
-    private enum DraggedDirection
-    {
-        Up,
-        Down,
-        Right,
-        Left
-    }
-    [SerializeField] private float timeToMoveBall;
+
+    [SerializeField] private float speedOfBall;
     [SerializeField] private float distanceOffsetForCushion;
     private Vector2 startingPos;
     private Vector2 endingPos;
 
     [SerializeField] private LayerMask layerMask;
     private Vector2 directionToFire;
+    private bool isCoroutineRunning;
+    private bool isHittingBall;
+    private bool isHittingPocket;
+    private BallMovement ballMovementScript;
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (!isCoroutineRunning)
         {
-            Touch touch = Input.GetTouch(0);
-            if (!EventSystem.current.IsPointerOverGameObject(0))
+            if (Input.GetMouseButtonDown(0))    // When First Clicked At A Point On Screen
             {
-                if (touch.phase == TouchPhase.Began)
+                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
                 {
-                    startingPos = touch.position;
+                    startingPos = Input.mousePosition;
+                    //Debug.Log("Starting Pose: " + startingPos);
+                    //Debug.Log("distance : " + Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)));
                 }
-                else if (touch.phase == TouchPhase.Ended)
+            }
+            else if (Input.GetMouseButtonUp(0))    // When First Clicked At A Point On Screen
+            {
+                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 3f)
                 {
-                    endingPos = touch.position;
+                    endingPos = Input.mousePosition;
+                    //Debug.Log("ending Pose: " + endingPos);
                     Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
                     GetDragDirection(dragVectorDirection);
                 }
             }
         }
+        #region
+        //if (Input.touchCount > 0)
+        //{
+        //    Touch touch = Input.GetTouch(0);
+        //    if (!EventSystem.current.IsPointerOverGameObject(0))
+        //    {
+        //        if (touch.phase == TouchPhase.Began)
+        //        {
+        //            startingPos = touch.position;
+        //        }
+        //        else if (touch.phase == TouchPhase.Ended)
+        //        {
+        //            endingPos = touch.position;
+        //            Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
+        //            GetDragDirection(dragVectorDirection);
+        //        }
+        //    }
+        //}
+        #endregion
     }
     private void GetDragDirection(Vector3 dragVector)
     {
@@ -75,32 +103,45 @@ public class WhiteBallMovement : MonoBehaviour
         }
         //Debug.Log("Raycast fired in direction : " + directionToFire);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, 30f, layerMask);
-        if (hit.collider != null)
+        if (hit.collider.CompareTag("Cushion"))
         {
             //Debug.Log("Raycast Hitted Point: " + hit.point);
-            StartCoroutine(MoveTheBall(hit.point, timeToMoveBall, draggedDirection));
+            StartCoroutine(MoveTheBall(hit.point, speedOfBall, draggedDirection));
+        }
+        else if (hit.collider.CompareTag("Ball"))
+        {
+            isHittingBall = true;
+            ballMovementScript = hit.collider?.GetComponent<BallMovement>();
+            StartCoroutine(MoveTheBall(hit.point, speedOfBall, draggedDirection));
+        }
+        else if (hit.collider.CompareTag("Pocket"))
+        {
+            isHittingPocket = true;
+            StartCoroutine(MoveTheBall(hit.point, speedOfBall, draggedDirection));
         }
     }
-    IEnumerator MoveTheBall(Vector2 targetPosition, float duration, DraggedDirection draggedDirection)
+    IEnumerator MoveTheBall(Vector2 targetPosition, float speed, DraggedDirection draggedDirection)
     {
         float time = 0;
         Vector2 startPosition = transform.position;
+        isCoroutineRunning = true;
         //Debug.Log("CoRoutine Started");
         switch (draggedDirection)
         {
             case DraggedDirection.Up:
-                targetPosition.y = targetPosition.y - distanceOffsetForCushion;
+                targetPosition.y -= distanceOffsetForCushion;
                 break;
             case DraggedDirection.Down:
-                targetPosition.y = targetPosition.y + distanceOffsetForCushion;
+                targetPosition.y += distanceOffsetForCushion;
                 break;
             case DraggedDirection.Left:
-                targetPosition.x = targetPosition.x + distanceOffsetForCushion;
+                targetPosition.x += distanceOffsetForCushion;
                 break;
             case DraggedDirection.Right:
-                targetPosition.x = targetPosition.x - distanceOffsetForCushion;
+                targetPosition.x -= distanceOffsetForCushion;
                 break;
         }
+        float duration = Vector3.Distance(targetPosition, startPosition) / speed;
         while (time < duration)
         {
             transform.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
@@ -108,5 +149,8 @@ public class WhiteBallMovement : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition;
+        if (isHittingBall) { ballMovementScript?.PottableBallMovement(draggedDirection); isHittingBall = false; }
+        else if (isHittingPocket) { gameObject.SetActive(false); }
+        isCoroutineRunning = false;
     }
 }
