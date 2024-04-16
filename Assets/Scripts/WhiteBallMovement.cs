@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum DraggedDirection
 {
@@ -23,6 +24,10 @@ public class WhiteBallMovement : MonoBehaviour
     private bool isHittingPocket;
     private BallMovement ballMovementScript;
 
+    public void RestartGame()
+    {
+        SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+    }
     void Update()
     {
         if (!isCoroutineRunning)
@@ -38,7 +43,7 @@ public class WhiteBallMovement : MonoBehaviour
             }
             else if (Input.GetMouseButtonUp(0))    // When First Clicked At A Point On Screen
             {
-                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 3f)
+                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 2f)
                 {
                     endingPos = Input.mousePosition;
                     //Debug.Log("ending Pose: " + endingPos);
