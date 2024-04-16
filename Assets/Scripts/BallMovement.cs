@@ -9,11 +9,7 @@ public class BallMovement : MonoBehaviour
     [SerializeField] private float speedOfBall;
     private bool isHittingPocket;
 
-    public void PottableBallMovement(DraggedDirection direction)
-    {
-        FireRayCast(direction);
-    }
-    private void FireRayCast(DraggedDirection draggedDirection)
+    public void FireRayCast(DraggedDirection draggedDirection)
     {
         switch (draggedDirection)
         {
@@ -30,24 +26,17 @@ public class BallMovement : MonoBehaviour
                 directionToFire = Vector2.right;
                 break;
         }
-        //Debug.Log("Raycast fired in direction : " + directionToFire);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, 30f, layerMask);
-        if (hit.collider.CompareTag("Cushion"))
-        {
-            //Debug.Log("Raycast Hitted Point: " + hit.point);
-            StartCoroutine(MoveTheBall(hit.point, speedOfBall, draggedDirection));
-        }
-        else if (hit.collider.CompareTag("Pocket"))
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, 15f, layerMask);
+        if (hit.collider.CompareTag("Pocket"))
         {
             isHittingPocket = true;
-            StartCoroutine(MoveTheBall(hit.point, speedOfBall, draggedDirection));
         }
+        StartCoroutine(MoveTheBall(hit.point, speedOfBall, draggedDirection));
     }
     IEnumerator MoveTheBall(Vector2 targetPosition, float speed, DraggedDirection draggedDirection)
     {
         float time = 0;
         Vector2 startPosition = transform.position;
-        //Debug.Log("CoRoutine Started");
         switch (draggedDirection)
         {
             case DraggedDirection.Up:
@@ -63,7 +52,7 @@ public class BallMovement : MonoBehaviour
                 targetPosition.x -= distanceOffsetForCushion;
                 break;
         }
-        float duration = Vector3.Distance(targetPosition, startPosition) / speed;
+        float duration = Vector3.Distance(targetPosition, startPosition) / speed;   // To Keep Uniform Speed Over Any Distance , S = D / T
         while (time < duration)
         {
             transform.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
