@@ -31,7 +31,6 @@ public class WhiteBallMovement : MonoBehaviour
     {
         GetUserInput();
     }
-
     private void GetUserInput()
     {
         if (!isCoroutineRunning)
@@ -54,7 +53,6 @@ public class WhiteBallMovement : MonoBehaviour
             }
         }
     }
-
     private void GetDragDirection(Vector3 dragVector)
     {
         float positiveX = Mathf.Abs(dragVector.x);
@@ -70,7 +68,6 @@ public class WhiteBallMovement : MonoBehaviour
         }
         FireRayCast(draggedDir);
     }
-
     private void FireRayCast(DraggedDirection draggedDirection)
     {
         switch (draggedDirection)
