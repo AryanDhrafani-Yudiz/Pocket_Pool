@@ -283,7 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 301453746}
   - component: {fileID: 301453747}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightCushion
   m_TagString: Cushion
   m_Icon: {fileID: 0}
@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 304947489}
   - component: {fileID: 304947491}
   - component: {fileID: 304947490}
+  - component: {fileID: 304947492}
   m_Layer: 0
   m_Name: CueBall
   m_TagString: Ball
@@ -470,6 +471,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &304947492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304947488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc2b0d9d4f6f34fc5b23bed692da69b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToMoveBall: 1
+  distanceOffsetForCushion: 0.3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 448
 --- !u!1 &437870845
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 545143947}
   - component: {fileID: 545143948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomCushion
   m_TagString: Cushion
   m_Icon: {fileID: 0}
@@ -908,7 +926,7 @@ GameObject:
   - component: {fileID: 948515831}
   - component: {fileID: 948515832}
   - component: {fileID: 948515833}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball_2
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -1233,7 +1251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561856309}
   - component: {fileID: 1561856310}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftCushion
   m_TagString: Cushion
   m_Icon: {fileID: 0}
@@ -1310,7 +1328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1855916333}
   - component: {fileID: 1855916334}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TopCushion
   m_TagString: Cushion
   m_Icon: {fileID: 0}
@@ -1922,7 +1940,7 @@ GameObject:
   - component: {fileID: 5703761414175291535}
   - component: {fileID: 5165570863646097783}
   - component: {fileID: 6604613623039875136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball_1
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -2094,7 +2112,7 @@ GameObject:
   - component: {fileID: 3313649020522629610}
   - component: {fileID: 3026757208229100081}
   - component: {fileID: 793243016892498286}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PocketVertical
   m_TagString: Pocket
   m_Icon: {fileID: 0}
@@ -2112,7 +2130,7 @@ GameObject:
   - component: {fileID: 1142164201529897998}
   - component: {fileID: 7197156712914122013}
   - component: {fileID: 3596023385311080638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PocketHorizontal
   m_TagString: Pocket
   m_Icon: {fileID: 0}
