@@ -8,6 +8,7 @@ public class BallMovement : MonoBehaviour
     private Vector2 directionToFire;
     [SerializeField] private float speedOfBall;
     private bool isHittingPocket;
+    [SerializeField] private TableManager tableManager;
 
     public void FireRayCast(DraggedDirection draggedDirection)
     {
@@ -60,6 +61,7 @@ public class BallMovement : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition;
+        tableManager.DeleteBall(gameObject);
         if (isHittingPocket) { gameObject.SetActive(false); isHittingPocket = false; }
     }
 }
