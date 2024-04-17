@@ -49,7 +49,6 @@ public class WhiteBallMovement : MonoBehaviour
                 {
                     endingPos = Input.mousePosition;
                     Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
-                    Debug.Log(dragVectorDirection);
                     if (dragVectorDirection != Vector3.zero) GetDragDirection(dragVectorDirection);
                 }
                 startingPos = Vector2.zero;

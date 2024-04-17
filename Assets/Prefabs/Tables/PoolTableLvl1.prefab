@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 431363935371255372}
   - component: {fileID: 4492774878594044249}
   - component: {fileID: 2873683112030810270}
+  - component: {fileID: 2373662923244970781}
   m_Layer: 0
   m_Name: PoolTableLvl1
   m_TagString: Untagged
@@ -103,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247894806314158120}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.69, y: 0.69, z: 1}
   m_ConstrainProportionsScale: 0
@@ -218,6 +219,21 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2373662923244970781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247894806314158120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e0a3874b70146c7a70336fb366924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalBallsOnTable:
+  - {fileID: 8719360188235858811}
+  - {fileID: 7400200697157874926}
 --- !u!1 &469313223503952862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,6 +1448,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
+  tableManager: {fileID: 0}
 --- !u!1 &7634082819156608404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,3 +1750,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
+  tableManager: {fileID: 0}

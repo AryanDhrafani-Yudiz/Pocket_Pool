@@ -826,6 +826,7 @@ GameObject:
   - component: {fileID: 6814614141185904502}
   - component: {fileID: 6472467545640991782}
   - component: {fileID: 7064317578224294560}
+  - component: {fileID: 8569851885813400119}
   m_Layer: 0
   m_Name: PoolTableLvl2
   m_TagString: Untagged
@@ -841,7 +842,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3700439727500897472}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.69, y: 0.69, z: 1}
   m_ConstrainProportionsScale: 0
@@ -956,6 +957,22 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8569851885813400119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3700439727500897472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e0a3874b70146c7a70336fb366924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalBallsOnTable:
+  - {fileID: 3713806461002427150}
+  - {fileID: 8050880017545220224}
+  - {fileID: 8629997787105727253}
 --- !u!1 &3713806461002427150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,6 +1111,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
+  tableManager: {fileID: 0}
 --- !u!1 &4986708419129540870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1643,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
+  tableManager: {fileID: 0}
 --- !u!1 &8701344146694337788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,5 +1944,10 @@ PrefabInstance:
 --- !u!4 &7696447819635744139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3173497385506132432, guid: ab303070c98ee49658377b2cec888454, type: 3}
+  m_PrefabInstance: {fileID: 5099694965862075483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8629997787105727253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3532555826568273742, guid: ab303070c98ee49658377b2cec888454, type: 3}
   m_PrefabInstance: {fileID: 5099694965862075483}
   m_PrefabAsset: {fileID: 0}

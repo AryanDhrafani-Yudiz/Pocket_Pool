@@ -272,6 +272,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
+  tableManager: {fileID: 0}
 --- !u!1 &2052389323926374457
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +488,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
+  tableManager: {fileID: 0}
 --- !u!1 &2206759186919911141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,6 +1560,7 @@ GameObject:
   - component: {fileID: 6304001653977331553}
   - component: {fileID: 6589615501079624958}
   - component: {fileID: 4110469162459077011}
+  - component: {fileID: 2119037677321878575}
   m_Layer: 0
   m_Name: PoolTableLvl3
   m_TagString: Untagged
@@ -1573,7 +1576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5720863367167212983}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.69, y: 0.69, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1688,6 +1691,23 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2119037677321878575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720863367167212983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e0a3874b70146c7a70336fb366924c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalBallsOnTable:
+  - {fileID: 1819571486453671250}
+  - {fileID: 2086066789527935232}
+  - {fileID: 7781351649703021273}
+  - {fileID: 630613350964304826}
 --- !u!1 &6320969191121967750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,6 +1959,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
+  tableManager: {fileID: 0}
 --- !u!1 &7839685633343876770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,6 +2344,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbb91f3e4b366428d94a242dce258da2, type: 3}
+--- !u!1 &630613350964304826 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3154424458514135330, guid: cbb91f3e4b366428d94a242dce258da2, type: 3}
+  m_PrefabInstance: {fileID: 2523889176308441752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5998053116897084692 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8087332788363208588, guid: cbb91f3e4b366428d94a242dce258da2, type: 3}

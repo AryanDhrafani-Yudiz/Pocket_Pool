@@ -10,6 +10,14 @@ public class BallMovement : MonoBehaviour
     private bool isHittingPocket;
     [SerializeField] private TableManager tableManager;
 
+    //private void Awake()
+    //{
+    //    tableManager = GetComponentInParent<TableManager>();
+    //}
+    private void OnEnable()
+    {
+        tableManager = GetComponentInParent<TableManager>();
+    }
     public void FireRayCast(DraggedDirection draggedDirection)
     {
         switch (draggedDirection)
