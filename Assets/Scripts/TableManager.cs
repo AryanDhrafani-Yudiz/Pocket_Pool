@@ -24,7 +24,7 @@ public class TableManager : MonoBehaviour
     }
     IEnumerator LoadNewLevel()
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
         LevelManager.Instance.SpawnNextLevel();
     }
 }

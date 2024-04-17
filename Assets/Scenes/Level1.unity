@@ -1067,7 +1067,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 216560989}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: SpawnNextLevel
+        m_MethodName: RespawnCurrentLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1568,6 +1568,8 @@ MonoBehaviour:
   gameStartingCanvas: {fileID: 1282847902}
   gamePlayCanvas: {fileID: 1182479836}
   gameOverCanvas: {fileID: 894380927}
+  winningImg: {fileID: 1040130578}
+  losingImg: {fileID: 476383987}
 --- !u!4 &1500303714
 Transform:
   m_ObjectHideFlags: 0

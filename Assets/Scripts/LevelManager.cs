@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     private int currentLevel = 0;
     public static LevelManager Instance;
     private GameObject currTable;
+    private int retriesAmt = 3;
 
     private void Awake()
     {
@@ -31,7 +32,17 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.OnGameOver();
+            UIManager.Instance.OnGameOver(true);
         }
+    }
+    public void RespawnCurrentLevel()
+    {
+        if (retriesAmt > 0)
+        {
+            if (currTable != null) Destroy(currTable); currTable = Instantiate(poolLevels[currentLevel - 1]);
+            retriesAmt--;
+            retriesTxt.text = retriesAmt.ToString();
+        }
+        //else UIManager.Instance.OnGameOver(false);
     }
 }
