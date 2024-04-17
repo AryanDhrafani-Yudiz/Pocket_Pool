@@ -24,10 +24,7 @@ public class WhiteBallMovement : MonoBehaviour
     private BallMovement ballMovementScript;
     [SerializeField] private StickScript stickScript;
 
-    public void RestartGame()
-    {
-        SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
-    }
+
     void Update()
     {
         GetUserInput();

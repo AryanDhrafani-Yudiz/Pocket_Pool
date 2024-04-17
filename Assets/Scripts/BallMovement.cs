@@ -10,11 +10,7 @@ public class BallMovement : MonoBehaviour
     private bool isHittingPocket;
     [SerializeField] private TableManager tableManager;
 
-    //private void Awake()
-    //{
-    //    tableManager = GetComponentInParent<TableManager>();
-    //}
-    private void OnEnable()
+    private void Awake()
     {
         tableManager = GetComponentInParent<TableManager>();
     }

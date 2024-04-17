@@ -19,7 +19,6 @@ public class TableManager : MonoBehaviour
     {
         if (totalBallsOnTable.Length == 0)
         {
-            Debug.Log("all Ball potted");
             StartCoroutine(LoadNewLevel());
         }
     }

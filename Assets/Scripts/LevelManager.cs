@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     private int currentLevel = 0;
     public static LevelManager Instance;
     private GameObject currTable;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -22,12 +23,15 @@ public class LevelManager : MonoBehaviour
     }
     public void SpawnNextLevel()
     {
-        Debug.Log("Spawn Next Level");
         if (currTable != null) Destroy(currTable);
         if (currentLevel != poolLevels.Length)
         {
             currTable = Instantiate(poolLevels[currentLevel]);
             currentLevel++;
+        }
+        else
+        {
+            UIManager.Instance.OnGameOver();
         }
     }
 }
