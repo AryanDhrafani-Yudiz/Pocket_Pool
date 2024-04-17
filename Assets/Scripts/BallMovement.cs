@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    [SerializeField] private float distanceOffsetForCushion;
+    [SerializeField] private float distanceOffset;
     [SerializeField] private LayerMask layerMask;
     private Vector2 directionToFire;
     [SerializeField] private float speedOfBall;
@@ -40,16 +40,16 @@ public class BallMovement : MonoBehaviour
         switch (draggedDirection)
         {
             case DraggedDirection.Up:
-                targetPosition.y -= distanceOffsetForCushion;
+                targetPosition.y -= distanceOffset;
                 break;
             case DraggedDirection.Down:
-                targetPosition.y += distanceOffsetForCushion;
+                targetPosition.y += distanceOffset;
                 break;
             case DraggedDirection.Left:
-                targetPosition.x += distanceOffsetForCushion;
+                targetPosition.x += distanceOffset;
                 break;
             case DraggedDirection.Right:
-                targetPosition.x -= distanceOffsetForCushion;
+                targetPosition.x -= distanceOffset;
                 break;
         }
         float duration = Vector3.Distance(targetPosition, startPosition) / speed;   // To Keep Uniform Speed Over Any Distance , S = D / T

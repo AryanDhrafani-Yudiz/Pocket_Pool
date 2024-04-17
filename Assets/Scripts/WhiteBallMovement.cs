@@ -12,7 +12,7 @@ public enum DraggedDirection
 public class WhiteBallMovement : MonoBehaviour
 {
     [SerializeField] private float speedOfBall;
-    [SerializeField] private float distanceOffsetForCushion;
+    [SerializeField] private float distanceOffset;
     private Vector2 startingPos;
     private Vector2 endingPos;
 
@@ -22,6 +22,7 @@ public class WhiteBallMovement : MonoBehaviour
     private bool isHittingBall;
     private bool isHittingPocket;
     private BallMovement ballMovementScript;
+    [SerializeField] private StickScript stickScript;
 
     public void RestartGame()
     {
@@ -37,19 +38,20 @@ public class WhiteBallMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))    // When First Clicked At A Point On Screen
             {
-                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
-                {
-                    startingPos = Input.mousePosition;
-                }
+                //if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
+                //{
+                startingPos = Input.mousePosition;
+                //}
             }
             else if (Input.GetMouseButtonUp(0))    // When First Clicked At A Point On Screen
             {
-                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 5f)
-                {
-                    endingPos = Input.mousePosition;
-                    Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
-                    GetDragDirection(dragVectorDirection);
-                }
+                //if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 3f)
+                //{
+                endingPos = Input.mousePosition;
+                Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
+                Debug.Log(dragVectorDirection);
+                if (dragVectorDirection != Vector3.zero) GetDragDirection(dragVectorDirection);
+                //}
             }
         }
     }
@@ -95,6 +97,7 @@ public class WhiteBallMovement : MonoBehaviour
         {
             isHittingPocket = true;
         }
+        stickScript.DisplayStick(transform.position, draggedDirection);
         StartCoroutine(MoveWhiteBall(hit.point, speedOfBall, draggedDirection));
     }
     IEnumerator MoveWhiteBall(Vector2 targetPosition, float speed, DraggedDirection draggedDirection)
@@ -105,16 +108,16 @@ public class WhiteBallMovement : MonoBehaviour
         switch (draggedDirection)
         {
             case DraggedDirection.Up:
-                targetPosition.y -= distanceOffsetForCushion;
+                targetPosition.y -= distanceOffset;
                 break;
             case DraggedDirection.Down:
-                targetPosition.y += distanceOffsetForCushion;
+                targetPosition.y += distanceOffset;
                 break;
             case DraggedDirection.Left:
-                targetPosition.x += distanceOffsetForCushion;
+                targetPosition.x += distanceOffset;
                 break;
             case DraggedDirection.Right:
-                targetPosition.x -= distanceOffsetForCushion;
+                targetPosition.x -= distanceOffset;
                 break;
         }
         float duration = Vector3.Distance(targetPosition, startPosition) / speed;   // To Keep Uniform Speed Over Any Distance , S = D / T
