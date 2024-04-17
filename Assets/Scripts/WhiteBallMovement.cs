@@ -38,20 +38,21 @@ public class WhiteBallMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))    // When First Clicked At A Point On Screen
             {
-                //if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
-                //{
-                startingPos = Input.mousePosition;
-                //}
+                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
+                {
+                    startingPos = Input.mousePosition;
+                }
             }
             else if (Input.GetMouseButtonUp(0))    // When First Clicked At A Point On Screen
             {
-                //if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 3f)
-                //{
-                endingPos = Input.mousePosition;
-                Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
-                Debug.Log(dragVectorDirection);
-                if (dragVectorDirection != Vector3.zero) GetDragDirection(dragVectorDirection);
-                //}
+                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 3f && startingPos != Vector2.zero)
+                {
+                    endingPos = Input.mousePosition;
+                    Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
+                    Debug.Log(dragVectorDirection);
+                    if (dragVectorDirection != Vector3.zero) GetDragDirection(dragVectorDirection);
+                }
+                startingPos = Vector2.zero;
             }
         }
     }
