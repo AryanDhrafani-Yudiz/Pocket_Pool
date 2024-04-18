@@ -87,7 +87,7 @@ public class WhiteBallMovement : MonoBehaviour
         if (hit.collider.CompareTag("Ball"))
         {
             isHittingBall = true;
-            ballMovementScript = hit.collider?.GetComponent<BallMovement>();
+            ballMovementScript = hit.collider.GetComponent<BallMovement>();
         }
         else if (hit.collider.CompareTag("Cushion"))
         {
