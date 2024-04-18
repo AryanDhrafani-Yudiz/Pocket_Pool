@@ -38,7 +38,6 @@ public class LevelManager : MonoBehaviour
     }
     public void CheckIfRespawnAvailable()
     {
-        Debug.Log(retriesAmt);
         if (retriesAmt > 0) ShowRetryBtn();
         else { UIManager.Instance.OnGameOver(false); SoundManager.Instance.OnGameOver(); }
     }
