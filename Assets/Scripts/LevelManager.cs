@@ -16,14 +16,8 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
+        if (Instance != null && Instance != this) Destroy(this);
+        else Instance = this;
         SpawnNextLevel();
     }
     public void SpawnNextLevel()
@@ -31,18 +25,20 @@ public class LevelManager : MonoBehaviour
         if (currTable != null) Destroy(currTable);
         if (currentLevel != poolLevels.Length)
         {
+            SoundManager.Instance.OnLevelChange();
             currTable = Instantiate(poolLevels[currentLevel]);
             currentLevel++;
         }
         else
         {
+            SoundManager.Instance.OnGameWon();
             UIManager.Instance.OnGameOver(true);
         }
     }
     public void CheckIfRespawnAvailable()
     {
         if (retriesAmt > 0) ShowRetryBtn();
-        else UIManager.Instance.OnGameOver(false);
+        else UIManager.Instance.OnGameOver(false); SoundManager.Instance.OnGameOver();
     }
     public void ShowRetryBtn()
     {

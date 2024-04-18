@@ -15,14 +15,8 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 120;
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
+        if (Instance != null && Instance != this) Destroy(this);
+        else Instance = this;
         gameStartingCanvas.enabled = true;
         gamePlayCanvas.enabled = false;
         gameOverCanvas.enabled = false;

@@ -8,6 +8,7 @@ public class BallMovement : MonoBehaviour
     private Vector2 directionToFire;
     [SerializeField] private float speedOfBall;
     private bool isHittingPocket;
+    private bool isHittingCushion;
     [SerializeField] private TableManager tableManager;
 
     private void Awake()
@@ -32,10 +33,8 @@ public class BallMovement : MonoBehaviour
                 break;
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, 15f, layerMask);
-        if (hit.collider.CompareTag("Pocket"))
-        {
-            isHittingPocket = true;
-        }
+        if (hit.collider.CompareTag("Pocket")) isHittingPocket = true;
+        else if (hit.collider.CompareTag("Cushion")) isHittingCushion = true;
         StartCoroutine(MoveTheBall(hit.point, speedOfBall, draggedDirection));
     }
     IEnumerator MoveTheBall(Vector2 targetPosition, float speed, DraggedDirection draggedDirection)
@@ -66,6 +65,7 @@ public class BallMovement : MonoBehaviour
         }
         transform.position = targetPosition;
         tableManager.DeleteBall(gameObject);
-        if (isHittingPocket) { gameObject.SetActive(false); isHittingPocket = false; }
+        if (isHittingPocket) { SoundManager.Instance.OnBallInHole(); gameObject.SetActive(false); isHittingPocket = false; }
+        else if (isHittingCushion) { SoundManager.Instance.OnWallHit(); isHittingCushion = false; }
     }
 }
