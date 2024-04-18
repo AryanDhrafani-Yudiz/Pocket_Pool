@@ -15,16 +15,18 @@ public class TableManager : MonoBehaviour
         totalBallsOnTable = temp.ToArray();
         CheckIfArrayIsEmpty();
     }
-    private void CheckIfArrayIsEmpty()
+    public bool CheckIfArrayIsEmpty()
     {
         if (totalBallsOnTable.Length == 0)
         {
             StartCoroutine(LoadNewLevel());
+            return true;
         }
+        else return false;
     }
     IEnumerator LoadNewLevel()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.3f);
         LevelManager.Instance.SpawnNextLevel();
     }
 }

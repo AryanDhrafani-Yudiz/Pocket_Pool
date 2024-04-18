@@ -21,10 +21,15 @@ public class WhiteBallMovement : MonoBehaviour
     private bool isHittingBall;
     private bool isHittingCushion;
     private bool isHittingPocket;
-    private BallMovement ballMovementScript;
     [SerializeField] private StickScript stickScript;
+    private BallMovement ballMovementScript;
+    private TableManager tableManagerScript;
     private int cushionHit;
 
+    private void Awake()
+    {
+        tableManagerScript = GetComponentInParent<TableManager>();
+    }
     void Update()
     {
         GetUserInput();
@@ -33,16 +38,16 @@ public class WhiteBallMovement : MonoBehaviour
     {
         if (!isCoroutineRunning && !LevelManager.Instance.disableUserInput)
         {
-            if (Input.GetMouseButtonDown(0))    // When First Clicked At A Point On Screen
+            if (Input.GetMouseButtonDown(0))
             {
                 if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
                 {
                     startingPos = Input.mousePosition;
                 }
             }
-            else if (Input.GetMouseButtonUp(0))    // When First Clicked At A Point On Screen
+            else if (Input.GetMouseButtonUp(0))
             {
-                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 3f && startingPos != Vector2.zero)
+                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 5f && startingPos != Vector2.zero)
                 {
                     endingPos = Input.mousePosition;
                     Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
@@ -96,7 +101,10 @@ public class WhiteBallMovement : MonoBehaviour
             cushionHit++;
             if (cushionHit == 3) LevelManager.Instance.CheckIfRespawnAvailable();
         }
-        else if (hit.collider.CompareTag("Pocket")) isHittingPocket = true;
+        else if (hit.collider.CompareTag("Pocket"))
+        {
+            if (!tableManagerScript.CheckIfArrayIsEmpty()) isHittingPocket = true;
+        }
         stickScript.DisplayStick(transform.position, draggedDirection); SoundManager.Instance.OnShotPlay();
         StartCoroutine(MoveWhiteBall(hit.point, speedOfBall, draggedDirection));
     }
