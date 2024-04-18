@@ -127,7 +127,7 @@ public class WhiteBallMovement : MonoBehaviour
         }
         transform.position = targetPosition;
         if (isHittingBall) { ballMovementScript?.FireRayCast(draggedDirection); isHittingBall = false; }
-        else if (isHittingPocket) { gameObject.SetActive(false); }
+        else if (isHittingPocket) { gameObject.SetActive(false); LevelManager.Instance.CheckIfRespawnAvailable(); }
         isCoroutineRunning = false;
     }
 }
