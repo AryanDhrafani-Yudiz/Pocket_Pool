@@ -10,7 +10,7 @@ public class TableManager : MonoBehaviour
     public void DeleteBall(GameObject currentGameObject)
     {
         int ballIndex = Array.IndexOf(totalBallsOnTable, currentGameObject);
-        List<GameObject> temp = new List<GameObject>(totalBallsOnTable);
+        List<GameObject> temp = new(totalBallsOnTable);
         temp.RemoveAt(ballIndex);
         totalBallsOnTable = temp.ToArray();
         CheckIfArrayIsEmpty();

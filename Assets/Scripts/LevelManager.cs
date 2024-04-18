@@ -3,12 +3,16 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private RectTransform retryBtnTransform;
+    private Vector2 defaultSizeScale = Vector2.one;
+    private Vector2 increasedSizeScale = new(1.2f, 1.2f);
     [SerializeField] private TextMeshProUGUI retriesTxt;
     [SerializeField] private GameObject[] poolLevels;
     private int currentLevel = 0;
     public static LevelManager Instance;
     private GameObject currTable;
     private int retriesAmt = 3;
+    public bool disableUserInput = false;
 
     private void Awake()
     {
@@ -35,6 +39,16 @@ public class LevelManager : MonoBehaviour
             UIManager.Instance.OnGameOver(true);
         }
     }
+    public void CheckIfRespawnAvailable()
+    {
+        if (retriesAmt > 0) ShowRetryBtn();
+        else UIManager.Instance.OnGameOver(false);
+    }
+    public void ShowRetryBtn()
+    {
+        disableUserInput = true;
+        retryBtnTransform.localScale = increasedSizeScale;
+    }
     public void RespawnCurrentLevel()
     {
         if (retriesAmt > 0)
@@ -42,7 +56,8 @@ public class LevelManager : MonoBehaviour
             if (currTable != null) Destroy(currTable); currTable = Instantiate(poolLevels[currentLevel - 1]);
             retriesAmt--;
             retriesTxt.text = retriesAmt.ToString();
+            disableUserInput = false;
+            retryBtnTransform.localScale = defaultSizeScale;
         }
-        //else UIManager.Instance.OnGameOver(false);
     }
 }

@@ -17,12 +17,12 @@ public class WhiteBallMovement : MonoBehaviour
 
     [SerializeField] private LayerMask layerMask;
     private Vector2 directionToFire;
-    private bool isCoroutineRunning;
+    public static bool isCoroutineRunning;
     private bool isHittingBall;
     private bool isHittingPocket;
     private BallMovement ballMovementScript;
     [SerializeField] private StickScript stickScript;
-
+    private int cushionHit;
 
     void Update()
     {
@@ -30,7 +30,7 @@ public class WhiteBallMovement : MonoBehaviour
     }
     private void GetUserInput()
     {
-        if (!isCoroutineRunning)
+        if (!isCoroutineRunning && !LevelManager.Instance.disableUserInput)
         {
             if (Input.GetMouseButtonDown(0))    // When First Clicked At A Point On Screen
             {
@@ -89,10 +89,12 @@ public class WhiteBallMovement : MonoBehaviour
             isHittingBall = true;
             ballMovementScript = hit.collider?.GetComponent<BallMovement>();
         }
-        else if (hit.collider.CompareTag("Pocket"))
+        else if (hit.collider.CompareTag("Cushion"))
         {
-            isHittingPocket = true;
+            cushionHit++;
+            if (cushionHit == 3) LevelManager.Instance.CheckIfRespawnAvailable();
         }
+        else if (hit.collider.CompareTag("Pocket")) isHittingPocket = true;
         stickScript.DisplayStick(transform.position, draggedDirection);
         StartCoroutine(MoveWhiteBall(hit.point, speedOfBall, draggedDirection));
     }
