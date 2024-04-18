@@ -13,12 +13,13 @@ public class TableManager : MonoBehaviour
         List<GameObject> temp = new(totalBallsOnTable);
         temp.RemoveAt(ballIndex);
         totalBallsOnTable = temp.ToArray();
-        CheckIfArrayIsEmpty();
+        IsArrayEmpty();
     }
-    public bool CheckIfArrayIsEmpty()
+    public bool IsArrayEmpty()
     {
         if (totalBallsOnTable.Length == 0)
         {
+            LevelManager.Instance.disableUserInput = true;
             StartCoroutine(LoadNewLevel());
             return true;
         }

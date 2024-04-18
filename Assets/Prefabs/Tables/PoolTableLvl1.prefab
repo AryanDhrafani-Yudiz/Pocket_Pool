@@ -614,7 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stickSpriteRenderer: {fileID: 8210222305709453501}
   arrowSpriteRenderer: {fileID: 4545995320882872103}
-  distanceOffsetForStick: 2.2
+  distanceOffsetForStick: 2.8
 --- !u!1 &3582539944022792854
 GameObject:
   m_ObjectHideFlags: 0
