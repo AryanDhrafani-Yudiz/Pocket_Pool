@@ -13,13 +13,31 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private RectTransform whiteBallTransform;
     [SerializeField] float timeToLerpWhiteBall;
 
+    [SerializeField] private RectTransform stickTransform;
+    [SerializeField] private float speedToMoveStickX;
+    [SerializeField] private float speedToMoveStickY;
+    [SerializeField] private float unitsToMove;
+    private float direction = 1.0f;
+    private Vector3 startingPos;
+
     void Start()
     {
         StartCoroutine(ShineAnimation(shineTargetScale, timeToLerpShine));
+        startingPos = stickTransform.position;
     }
     private void Update()
     {
         whiteBallTransform.Rotate(0f, 0f, -5 * timeToLerpWhiteBall * Time.deltaTime);
+
+        stickTransform.Translate(direction * speedToMoveStickX * Time.deltaTime, direction * speedToMoveStickY * Time.deltaTime, 0);
+        if (stickTransform.position.y > startingPos.y + unitsToMove)
+        {
+            direction = 1;
+        }
+        else if (stickTransform.position.y < startingPos.y - unitsToMove)
+        {
+            direction = -1;
+        }
     }
     IEnumerator ShineAnimation(float endScaleValue, float duration)
     {
@@ -30,8 +48,7 @@ public class AnimationController : MonoBehaviour
         while (time < duration)
         {
             shineScaleModifier = Mathf.Lerp(startScaleValue, endScaleValue, time / duration);
-            glow1Transform.localScale = Vector3.one * shineScaleModifier;
-            glow2Transform.localScale = Vector3.one * shineScaleModifier;
+            glow1Transform.localScale = Vector3.one * shineScaleModifier; glow2Transform.localScale = Vector3.one * shineScaleModifier;
             time += Time.deltaTime;
             yield return null;
         }

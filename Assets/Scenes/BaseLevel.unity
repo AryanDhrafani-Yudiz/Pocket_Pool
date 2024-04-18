@@ -1006,7 +1006,11 @@ MonoBehaviour:
   shineTargetScale: 1.5
   timeToLerpShine: 0.7
   whiteBallTransform: {fileID: 358276761}
-  timeToLerpWhiteBall: 10
+  timeToLerpWhiteBall: 15
+  stickTransform: {fileID: 2062918018}
+  speedToMoveStickX: 40
+  speedToMoveStickY: 5
+  unitsToMove: 7
 --- !u!1 &819130919
 GameObject:
   m_ObjectHideFlags: 0
