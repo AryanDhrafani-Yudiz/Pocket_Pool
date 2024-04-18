@@ -24,14 +24,19 @@ public class WhiteBallMovement : MonoBehaviour
     [SerializeField] private StickScript stickScript;
     private BallMovement ballMovementScript;
     private int cushionHit;
+    private LevelManager levelManager;
 
+    private void Awake()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
     void Update()
     {
         GetUserInput();
     }
     private void GetUserInput()
     {
-        if (!isCoroutineRunning && !LevelManager.Instance.disableUserInput)
+        if (!isCoroutineRunning && !levelManager.disableUserInput)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -94,7 +99,7 @@ public class WhiteBallMovement : MonoBehaviour
         {
             isHittingCushion = true;
             cushionHit++;
-            if (cushionHit == 3) LevelManager.Instance.CheckIfRespawnAvailable();
+            if (cushionHit == 3) levelManager.CheckIfRespawnAvailable();
         }
         else if (hit.collider.CompareTag("Pocket")) isHittingPocket = true;
         stickScript.DisplayStick(transform.position, draggedDirection); SoundManager.Instance.OnShotPlay();
@@ -130,7 +135,7 @@ public class WhiteBallMovement : MonoBehaviour
         transform.position = targetPosition;
         if (isHittingBall) { ballMovementScript?.FireRayCast(draggedDirection); isHittingBall = false; }
         else if (isHittingCushion) { SoundManager.Instance.OnWallHit(); isHittingCushion = false; }
-        else if (isHittingPocket) { SoundManager.Instance.OnBallInHole(); LevelManager.Instance.CheckIfRespawnAvailable(); isHittingPocket = false; gameObject.SetActive(false); }
+        else if (isHittingPocket) { SoundManager.Instance.OnBallInHole(); levelManager.CheckIfRespawnAvailable(); isHittingPocket = false; gameObject.SetActive(false); }
         isCoroutineRunning = false;
     }
 }
