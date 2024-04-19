@@ -77,6 +77,7 @@ public class BallMovement : MonoBehaviour
     }
     private void OnPocketHit()
     {
-        SoundManager.Instance.OnBallInHole(); tableManager.DeleteBall(gameObject); gameObject.SetActive(false); isHittingPocket = false;
+        SoundManager.Instance.OnBallInHole(); tableManager.DeleteBall(gameObject);
+        gameObject.SetActive(false); isHittingPocket = false;
     }
 }

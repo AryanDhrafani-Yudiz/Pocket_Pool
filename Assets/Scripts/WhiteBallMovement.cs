@@ -159,6 +159,7 @@ public class WhiteBallMovement : MonoBehaviour
     }
     private void OnPocketHit()
     {
-        soundManager.OnBallInHole(); levelManager.CheckIfRespawnAvailable(); isHittingPocket = false; gameObject.SetActive(false);
+        soundManager.OnBallInHole(); levelManager.CheckIfRespawnAvailable();
+        isHittingPocket = false; gameObject.SetActive(false);
     }
 }

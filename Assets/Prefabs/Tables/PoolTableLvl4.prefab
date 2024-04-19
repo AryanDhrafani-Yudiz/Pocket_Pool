@@ -1048,10 +1048,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4340480713628249086}
 --- !u!1 &5093270597427452296
 GameObject:
@@ -1187,10 +1187,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4340480713628249086}
 --- !u!1 &5623479485885987150
 GameObject:
@@ -1456,10 +1456,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4340480713628249086}
 --- !u!1 &5737148141024730128
 GameObject:
@@ -2072,10 +2072,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4340480713628249086}
 --- !u!1 &8029510542714398972
 GameObject:
@@ -2320,10 +2320,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4340480713628249086}
 --- !u!1 &8473574456501185283
 GameObject:
@@ -2480,6 +2480,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalBallsOnTable:
+  - {fileID: 3467989091932522353}
+  - {fileID: 5093270597427452296}
+  - {fileID: 8306094030488013100}
+  - {fileID: 7615418560639666313}
+  - {fileID: 5638102625171196621}
+  ballsOnTable:
   - {fileID: 3467989091932522353}
   - {fileID: 5093270597427452296}
   - {fileID: 8306094030488013100}

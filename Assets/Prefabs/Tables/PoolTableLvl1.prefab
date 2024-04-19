@@ -234,6 +234,9 @@ MonoBehaviour:
   totalBallsOnTable:
   - {fileID: 8719360188235858811}
   - {fileID: 7400200697157874926}
+  ballsOnTable:
+  - {fileID: 8719360188235858811}
+  - {fileID: 7400200697157874926}
 --- !u!1 &469313223503952862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,10 +1447,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 2373662923244970781}
 --- !u!1 &7634082819156608404
 GameObject:
@@ -1746,8 +1749,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 2373662923244970781}

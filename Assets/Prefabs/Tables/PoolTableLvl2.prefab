@@ -973,6 +973,10 @@ MonoBehaviour:
   - {fileID: 3713806461002427150}
   - {fileID: 8050880017545220224}
   - {fileID: 8629997787105727253}
+  ballsOnTable:
+  - {fileID: 3713806461002427150}
+  - {fileID: 8050880017545220224}
+  - {fileID: 8629997787105727253}
 --- !u!1 &3713806461002427150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,10 +1111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 8569851885813400119}
 --- !u!1 &4986708419129540870
 GameObject:
@@ -1639,10 +1643,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 8569851885813400119}
 --- !u!1 &8629997787105727253
 GameObject:
@@ -1778,10 +1782,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 8569851885813400119}
 --- !u!1 &8701344146694337788
 GameObject:

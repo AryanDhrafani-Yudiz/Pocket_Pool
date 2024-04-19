@@ -307,10 +307,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4266991780291231219}
 --- !u!1 &775304927193266903
 GameObject:
@@ -1827,10 +1827,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4266991780291231219}
 --- !u!1 &7643949818598448338
 GameObject:
@@ -1966,10 +1966,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4266991780291231219}
 --- !u!1 &7684415576998156138
 GameObject:
@@ -2105,10 +2105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4266991780291231219}
 --- !u!1 &8120800735344938708
 GameObject:
@@ -2265,6 +2265,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalBallsOnTable:
+  - {fileID: 732174938420114033}
+  - {fileID: 6803212756599579328}
+  - {fileID: 7684415576998156138}
+  - {fileID: 7643949818598448338}
+  - {fileID: 8860683939780170718}
+  - {fileID: 8373202644970931475}
+  ballsOnTable:
   - {fileID: 732174938420114033}
   - {fileID: 6803212756599579328}
   - {fileID: 7684415576998156138}
@@ -2535,10 +2542,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4266991780291231219}
 --- !u!1 &8521409800099638522
 GameObject:
@@ -2804,10 +2811,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceOffset: 0.33
+  speedOfBall: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 320
-  speedOfBall: 5
   tableManager: {fileID: 4266991780291231219}
 --- !u!1 &9118112822933940608
 GameObject:

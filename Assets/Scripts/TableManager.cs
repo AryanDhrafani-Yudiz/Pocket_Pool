@@ -1,23 +1,19 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TableManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] totalBallsOnTable;
+    [SerializeField] private List<GameObject> ballsOnTable;
 
     public void DeleteBall(GameObject currentGameObject)
     {
-        int ballIndex = Array.IndexOf(totalBallsOnTable, currentGameObject);
-        List<GameObject> temp = new(totalBallsOnTable);
-        temp.RemoveAt(ballIndex);
-        totalBallsOnTable = temp.ToArray();
-        IsArrayEmpty();
+        ballsOnTable.Remove(currentGameObject);
+        IsListEmpty();
     }
-    public bool IsArrayEmpty()
+    private bool IsListEmpty()
     {
-        if (totalBallsOnTable.Length == 0)
+        if (ballsOnTable.Count == 0)
         {
             LevelManager.Instance.disableUserInput = true;
             StartCoroutine(LoadNewLevel());
