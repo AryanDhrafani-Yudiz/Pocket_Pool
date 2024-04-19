@@ -4,14 +4,18 @@ using UnityEngine;
 public class BallMovement : MonoBehaviour
 {
     [SerializeField] private float distanceOffset;
+    [SerializeField] private float speedOfBall;
+
     [SerializeField] private LayerMask layerMask;
     private Vector2 directionToFire;
-    [SerializeField] private float speedOfBall;
+    private readonly float rayCastDistance = 15f;
+
     private bool isHittingPocket;
     private bool isHittingCushion;
-    [SerializeField] private TableManager tableManager;
     private readonly string cushion = "Cushion";
     private readonly string pocket = "Pocket";
+
+    [SerializeField] private TableManager tableManager;
 
     public void FireRayCast(DraggedDirection draggedDirection)
     {
@@ -30,7 +34,7 @@ public class BallMovement : MonoBehaviour
                 directionToFire = Vector2.right;
                 break;
         }
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, 15f, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, rayCastDistance, layerMask);
 
         if (hit.collider.CompareTag(pocket)) isHittingPocket = true;
         else if (hit.collider.CompareTag(cushion)) isHittingCushion = true;

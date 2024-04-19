@@ -310,6 +310,8 @@ MonoBehaviour:
   - {fileID: 247894806314158120, guid: e8bf9ce8268c746bdb652c278b219bde, type: 3}
   - {fileID: 3700439727500897472, guid: 88a22a542de194437a025cb52718dd49, type: 3}
   - {fileID: 5720863367167212983, guid: 8c6da578848e64d47ac242e20dd6b2ca, type: 3}
+  - {fileID: 8473574456501185283, guid: ab4d66c2d341b4bb0a5249e78068ca92, type: 3}
+  - {fileID: 8120800735344938708, guid: ae38a1fca06334c1a93da39be2e703fc, type: 3}
   disableUserInput: 0
 --- !u!1 &233008817
 GameObject:
@@ -1808,7 +1810,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182479833}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
@@ -2066,7 +2068,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282847899}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

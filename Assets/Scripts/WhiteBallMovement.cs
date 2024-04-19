@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public enum DraggedDirection
@@ -18,21 +17,25 @@ public class WhiteBallMovement : MonoBehaviour
 
     [SerializeField] private LayerMask layerMask;
     private Vector2 directionToFire;
+    private readonly float rayCastDistance = 15f;
+
     public static bool isCoroutineRunning;
     private bool isHittingBall;
     private bool isHittingCushion;
     private bool isHittingPocket;
-    [SerializeField] private StickScript stickScript;
-    private BallMovement ballMovementScript;
     private int cushionHit;
-    private LevelManager levelManager;
-
     private readonly string cushion = "Cushion";
     private readonly string pocket = "Pocket";
+
+    [SerializeField] private StickScript stickScript;
+    private LevelManager levelManager;
+    private SoundManager soundManager;
+    private BallMovement ballMovementScript;
 
     private void Awake()
     {
         levelManager = LevelManager.Instance;
+        soundManager = SoundManager.Instance;
     }
     void Update()
     {
@@ -93,7 +96,7 @@ public class WhiteBallMovement : MonoBehaviour
                 directionToFire = Vector2.right;
                 break;
         }
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, 15f, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, rayCastDistance, layerMask);
 
         if (hit.collider.TryGetComponent<BallMovement>(out var ballMovement))
         {
@@ -101,7 +104,7 @@ public class WhiteBallMovement : MonoBehaviour
         }
         else if (hit.collider.CompareTag(cushion))
         {
-            isHittingCushion = true; cushionHit++; if (cushionHit == 3) levelManager.CheckIfRespawnAvailable();
+            isHittingCushion = true; cushionHit++; if (cushionHit == 5) levelManager.CheckIfRespawnAvailable();
         }
         else if (hit.collider.CompareTag(pocket)) isHittingPocket = true;
 
@@ -110,7 +113,7 @@ public class WhiteBallMovement : MonoBehaviour
     private void ShootTheBall(RaycastHit2D hit, DraggedDirection draggedDirection)
     {
         stickScript.DisplayStick(transform.position, draggedDirection);
-        SoundManager.Instance.OnShotPlay();
+        soundManager.OnShotPlay();
         StartCoroutine(MoveWhiteBall(hit.point, speedOfBall, draggedDirection));
     }
     IEnumerator MoveWhiteBall(Vector2 targetPosition, float speed, DraggedDirection draggedDirection)
@@ -152,10 +155,10 @@ public class WhiteBallMovement : MonoBehaviour
     }
     private void OnCushionHit()
     {
-        SoundManager.Instance.OnWallHit(); isHittingCushion = false;
+        soundManager.OnWallHit(); isHittingCushion = false;
     }
     private void OnPocketHit()
     {
-        SoundManager.Instance.OnBallInHole(); levelManager.CheckIfRespawnAvailable(); isHittingPocket = false; gameObject.SetActive(false);
+        soundManager.OnBallInHole(); levelManager.CheckIfRespawnAvailable(); isHittingPocket = false; gameObject.SetActive(false);
     }
 }

@@ -3,14 +3,14 @@ using UnityEngine.UI;
 
 public class HomeScreen : BaseScreen
 {
-    [SerializeField] Button _playButton;
+    [SerializeField] Button playButton;
 
     private void Start()
     {
-        _playButton.onClick.AddListener(OnPlay);
+        playButton.onClick.AddListener(OnPlay);
     }
     void OnPlay()
     {
-        UiManager.Instance.SwitchScreen(GameScreens.Play);
+        UIManager.Instance.SwitchScreen(GameScreens.Play);
     }
 }

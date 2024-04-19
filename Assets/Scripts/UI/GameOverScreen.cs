@@ -12,18 +12,13 @@ public class GameOverScreen : BaseScreen
     {
         playAgainButton.onClick.AddListener(OnRestart);
     }
-    public override void ActivateScreen()
+    void OnRestart()
     {
-        base.ActivateScreen();
+        SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
     }
     public void IsGameWin(bool value)
     {
         if (value) { winningImg.enabled = true; losingImg.enabled = false; }
         else { winningImg.enabled = false; losingImg.enabled = true; }
-    }
-    void OnRestart()
-    {
-        //UiManager.instance.SwitchScreen(GameScreens.Play);
-        SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
     }
 }

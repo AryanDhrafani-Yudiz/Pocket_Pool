@@ -6,9 +6,9 @@ public enum GameScreens
     Play,
     GameOver
 }
-public class UiManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public static UiManager Instance;
+    public static UIManager Instance;
     [SerializeField] BaseScreen _currentScreen;
     [SerializeField] List<BaseScreen> _screens;
 

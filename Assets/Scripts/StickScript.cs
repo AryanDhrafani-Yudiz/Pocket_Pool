@@ -42,6 +42,7 @@ public class StickScript : MonoBehaviour
         transform.position = targetTransformPosition;
         stickSpriteRenderer.enabled = true;
         arrowSpriteRenderer.enabled = true;
+
         StartCoroutine(HideStick());
     }
     IEnumerator HideStick()

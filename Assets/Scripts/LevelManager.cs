@@ -3,23 +3,27 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private GameObject[] poolLevels;
+    public bool disableUserInput = false;
+
     [SerializeField] private RectTransform retryBtnTransform;
     private Vector2 defaultSizeScale = Vector2.one;
     private Vector2 increasedSizeScale = new(1.2f, 1.2f);
-    [SerializeField] private TextMeshProUGUI retriesTxt;
-    [SerializeField] private GameObject[] poolLevels;
+
     private int currentLevel = 0;
-    public static LevelManager Instance;
     private GameObject currTable;
     private int retriesAmt = 3;
-    public bool disableUserInput = false;
+    [SerializeField] private TextMeshProUGUI retriesTxt;
+
+    public static LevelManager Instance;
     private GameOverScreen gameOverScreen;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
         SpawnNextLevel();
-        gameOverScreen = UiManager.Instance.GetScreen(GameScreens.GameOver) as GameOverScreen;
+        gameOverScreen = UIManager.Instance.GetScreen(GameScreens.GameOver) as GameOverScreen;
     }
     public void SpawnNextLevel()
     {
@@ -33,8 +37,8 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            UiManager.Instance.SwitchScreen(GameScreens.GameOver);
-            gameOverScreen?.IsGameWin(true);
+            UIManager.Instance.SwitchScreen(GameScreens.GameOver);
+            if (gameOverScreen) gameOverScreen.IsGameWin(true);
             SoundManager.Instance.OnGameWon();
         }
     }
@@ -43,8 +47,8 @@ public class LevelManager : MonoBehaviour
         if (retriesAmt > 0) ShowRetryBtn();
         else
         {
-            UiManager.Instance.SwitchScreen(GameScreens.GameOver);
-            gameOverScreen?.IsGameWin(false);
+            UIManager.Instance.SwitchScreen(GameScreens.GameOver);
+            if (gameOverScreen) gameOverScreen.IsGameWin(false);
             SoundManager.Instance.OnGameOver();
         }
     }
