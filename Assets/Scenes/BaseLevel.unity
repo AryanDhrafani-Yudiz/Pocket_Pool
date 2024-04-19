@@ -310,6 +310,11 @@ MonoBehaviour:
   - {fileID: 5720863367167212983, guid: 8c6da578848e64d47ac242e20dd6b2ca, type: 3}
   - {fileID: 8473574456501185283, guid: ab4d66c2d341b4bb0a5249e78068ca92, type: 3}
   - {fileID: 8120800735344938708, guid: ae38a1fca06334c1a93da39be2e703fc, type: 3}
+  - {fileID: 4020759035514453678, guid: 0261d21842bfc4ff6b757966222fb10a, type: 3}
+  - {fileID: 8635334806344172832, guid: 5f23b059f60814f13ae235f9d502ed0b, type: 3}
+  - {fileID: 8063970304229454707, guid: eccf5927b92a34ce7b414b1064211b31, type: 3}
+  - {fileID: 2296340269751314406, guid: 95e7a82ce0ee84cf79115ba084ad21f6, type: 3}
+  - {fileID: 2232193476342107613, guid: dcf58f5f58257434b981b3360098a3c7, type: 3}
   disableUserInput: 0
   retryBtnTransform: {fileID: 1226989884}
   retriesTxt: {fileID: 1426449257}
