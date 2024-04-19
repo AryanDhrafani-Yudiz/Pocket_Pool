@@ -1448,7 +1448,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
-  tableManager: {fileID: 0}
+  tableManager: {fileID: 2373662923244970781}
 --- !u!1 &7634082819156608404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,4 +1750,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
-  tableManager: {fileID: 0}
+  tableManager: {fileID: 2373662923244970781}

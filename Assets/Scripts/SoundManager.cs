@@ -1,18 +1,12 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 using System;
 
 public class SoundManager : MonoBehaviour
 {
-    [SerializeField] private Image volumeBtnImage;
-    [SerializeField] private Sprite volumeOnBtn;
-    [SerializeField] private Sprite volumeOffBtn;
-
     public static SoundManager Instance;
 
     [SerializeField] private AudioSource audioSource;
-
     [SerializeField] private Sound[] audioClips;
 
     public enum SoundName

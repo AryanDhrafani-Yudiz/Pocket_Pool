@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image winningImg;
     [SerializeField] private Image losingImg;
 
+    [SerializeField] private Image volumeBtnImage;
+    [SerializeField] private Sprite volumeOnBtn;
+    [SerializeField] private Sprite volumeOffBtn;
     public static UIManager Instance;
 
     private void Awake()
@@ -20,6 +23,19 @@ public class UIManager : MonoBehaviour
         gameStartingCanvas.enabled = true;
         gamePlayCanvas.enabled = false;
         gameOverCanvas.enabled = false;
+    }
+    public void OnVolumeOnOffBtn()
+    {
+        if (volumeBtnImage.sprite == volumeOnBtn)
+        {
+            SoundManager.Instance.SoundMute(true);
+            volumeBtnImage.sprite = volumeOffBtn;
+        }
+        else if (volumeBtnImage.sprite == volumeOffBtn)
+        {
+            SoundManager.Instance.SoundMute(false);
+            volumeBtnImage.sprite = volumeOnBtn;
+        }
     }
     public void OnGameStart()
     {

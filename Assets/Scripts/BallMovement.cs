@@ -13,7 +13,7 @@ public class BallMovement : MonoBehaviour
 
     private void Awake()
     {
-        tableManager = GetComponentInParent<TableManager>();
+        //tableManager = GetComponentInParent<TableManager>();
     }
     public void FireRayCast(DraggedDirection draggedDirection)
     {
@@ -64,8 +64,7 @@ public class BallMovement : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition;
-        tableManager.DeleteBall(gameObject);
-        if (isHittingPocket) { SoundManager.Instance.OnBallInHole(); gameObject.SetActive(false); isHittingPocket = false; }
+        if (isHittingPocket) { SoundManager.Instance.OnBallInHole(); tableManager.DeleteBall(gameObject); gameObject.SetActive(false); isHittingPocket = false; }
         else if (isHittingCushion) { SoundManager.Instance.OnWallHit(); isHittingCushion = false; }
     }
 }

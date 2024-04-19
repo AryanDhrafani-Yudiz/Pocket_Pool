@@ -26,9 +26,14 @@ public class WhiteBallMovement : MonoBehaviour
     private int cushionHit;
     private LevelManager levelManager;
 
+    private readonly string cushion = "Cushion";
+    private readonly string pocket = "Pocket";
+
     private void Awake()
     {
-        levelManager = FindObjectOfType<LevelManager>();
+        levelManager = LevelManager.Instance;
+        if (levelManager == null) { Debug.Log("LvManager is Null"); }
+
     }
     void Update()
     {
@@ -90,18 +95,18 @@ public class WhiteBallMovement : MonoBehaviour
                 break;
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, 15f, layerMask);
-        if (hit.collider.CompareTag("Ball"))
+        if (hit.collider.TryGetComponent<BallMovement>(out var ballMovement))
         {
             isHittingBall = true;
-            ballMovementScript = hit.collider.GetComponent<BallMovement>();
+            ballMovementScript = ballMovement;
         }
-        else if (hit.collider.CompareTag("Cushion"))
+        else if (hit.collider.CompareTag(cushion))
         {
             isHittingCushion = true;
             cushionHit++;
             if (cushionHit == 3) levelManager.CheckIfRespawnAvailable();
         }
-        else if (hit.collider.CompareTag("Pocket")) isHittingPocket = true;
+        else if (hit.collider.CompareTag(pocket)) isHittingPocket = true;
         stickScript.DisplayStick(transform.position, draggedDirection); SoundManager.Instance.OnShotPlay();
         StartCoroutine(MoveWhiteBall(hit.point, speedOfBall, draggedDirection));
     }

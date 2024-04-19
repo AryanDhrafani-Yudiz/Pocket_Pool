@@ -1111,7 +1111,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
-  tableManager: {fileID: 0}
+  tableManager: {fileID: 8569851885813400119}
 --- !u!1 &4986708419129540870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,7 +1643,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speedOfBall: 5
-  tableManager: {fileID: 0}
+  tableManager: {fileID: 8569851885813400119}
 --- !u!1 &8701344146694337788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,6 +1936,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball_3
       objectReference: {fileID: 0}
+    - target: {fileID: 9051729951540000960, guid: ab303070c98ee49658377b2cec888454, type: 3}
+      propertyPath: tableManager
+      value: 
+      objectReference: {fileID: 8569851885813400119}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
