@@ -33,8 +33,6 @@ public class WhiteBallMovement : MonoBehaviour
     private void Awake()
     {
         levelManager = LevelManager.Instance;
-        //if (levelManager == null) { Debug.Log("LvManager is Null"); }
-
     }
     void Update()
     {

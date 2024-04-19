@@ -580,19 +580,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 350614490}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1500303713}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnVolumeOnOffBtn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &358276760
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,19 +775,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 413940698}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1500303713}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnRestartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &476383985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1481,7 @@ GameObject:
   - component: {fileID: 894380927}
   - component: {fileID: 894380926}
   - component: {fileID: 894380925}
+  - component: {fileID: 894380929}
   m_Layer: 5
   m_Name: GameWonCanvas
   m_TagString: Untagged
@@ -1598,6 +1575,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &894380929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894380924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 381cc4b254a524bf0b20588931b89ac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screen: 2
+  playAgainButton: {fileID: 413940700}
+  winningImg: {fileID: 1040130578}
+  losingImg: {fileID: 476383987}
 --- !u!1 &948919380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,6 +1753,7 @@ GameObject:
   - component: {fileID: 1182479836}
   - component: {fileID: 1182479835}
   - component: {fileID: 1182479834}
+  - component: {fileID: 1182479838}
   m_Layer: 5
   m_Name: GameplayCanvas
   m_TagString: Untagged
@@ -1814,7 +1808,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182479833}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
@@ -1853,6 +1847,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1182479838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182479833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4ee0d5471dc45999111fb97bff63d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screen: 1
+  volumeButton: {fileID: 350614492}
+  volumeBtnImage: {fileID: 350614490}
+  volumeOnBtn: {fileID: 21300000, guid: 0fa9dc2864c2c478889cee21c48e0ce8, type: 3}
+  volumeOffBtn: {fileID: 21300000, guid: ddba0528e26f9479daa6858dc19b1fe0, type: 3}
 --- !u!1 &1226989883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,6 +2011,7 @@ GameObject:
   - component: {fileID: 1282847902}
   - component: {fileID: 1282847901}
   - component: {fileID: 1282847900}
+  - component: {fileID: 1282847904}
   m_Layer: 5
   m_Name: StartingCanvas
   m_TagString: Untagged
@@ -2054,7 +2066,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282847899}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -2093,6 +2105,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1282847904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282847899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bdcce8c93b104722b64da914879c918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screen: 0
+  _playButton: {fileID: 1936435706}
 --- !u!1 &1349628195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,7 +2371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1500303714}
-  - component: {fileID: 1500303713}
+  - component: {fileID: 1500303715}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -2353,26 +2379,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1500303713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500303712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab8d30df01bd14a409c3f506d2c63f7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameStartingCanvas: {fileID: 1282847902}
-  gamePlayCanvas: {fileID: 1182479836}
-  gameOverCanvas: {fileID: 894380927}
-  winningImg: {fileID: 1040130578}
-  losingImg: {fileID: 476383987}
-  volumeBtnImage: {fileID: 350614490}
-  volumeOnBtn: {fileID: 21300000, guid: 0fa9dc2864c2c478889cee21c48e0ce8, type: 3}
-  volumeOffBtn: {fileID: 21300000, guid: ddba0528e26f9479daa6858dc19b1fe0, type: 3}
 --- !u!4 &1500303714
 Transform:
   m_ObjectHideFlags: 0
@@ -2388,6 +2394,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 674051447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1500303715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500303712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecec2d02f42d4b37a11653a000bb577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentScreen: {fileID: 1282847904}
+  _screens:
+  - {fileID: 1282847904}
+  - {fileID: 1182479838}
+  - {fileID: 894380929}
 --- !u!1 &1558624674
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,19 +2598,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1936435704}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1500303713}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnGameStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2062918017
 GameObject:
   m_ObjectHideFlags: 0

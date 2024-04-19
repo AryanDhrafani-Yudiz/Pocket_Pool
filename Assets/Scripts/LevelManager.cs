@@ -13,12 +13,13 @@ public class LevelManager : MonoBehaviour
     private GameObject currTable;
     private int retriesAmt = 3;
     public bool disableUserInput = false;
-
+    private GameOverScreen gameOverScreen;
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
         SpawnNextLevel();
+        gameOverScreen = UiManager.Instance.GetScreen(GameScreens.GameOver) as GameOverScreen;
     }
     public void SpawnNextLevel()
     {
@@ -32,14 +33,20 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
+            UiManager.Instance.SwitchScreen(GameScreens.GameOver);
+            gameOverScreen?.IsGameWin(true);
             SoundManager.Instance.OnGameWon();
-            UIManager.Instance.OnGameOver(true);
         }
     }
     public void CheckIfRespawnAvailable()
     {
         if (retriesAmt > 0) ShowRetryBtn();
-        else { UIManager.Instance.OnGameOver(false); SoundManager.Instance.OnGameOver(); }
+        else
+        {
+            UiManager.Instance.SwitchScreen(GameScreens.GameOver);
+            gameOverScreen?.IsGameWin(false);
+            SoundManager.Instance.OnGameOver();
+        }
     }
     public void ShowRetryBtn()
     {
