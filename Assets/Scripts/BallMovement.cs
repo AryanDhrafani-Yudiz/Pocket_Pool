@@ -10,11 +10,9 @@ public class BallMovement : MonoBehaviour
     private bool isHittingPocket;
     private bool isHittingCushion;
     [SerializeField] private TableManager tableManager;
+    private readonly string cushion = "Cushion";
+    private readonly string pocket = "Pocket";
 
-    private void Awake()
-    {
-        //tableManager = GetComponentInParent<TableManager>();
-    }
     public void FireRayCast(DraggedDirection draggedDirection)
     {
         switch (draggedDirection)
@@ -33,8 +31,10 @@ public class BallMovement : MonoBehaviour
                 break;
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, 15f, layerMask);
-        if (hit.collider.CompareTag("Pocket")) isHittingPocket = true;
-        else if (hit.collider.CompareTag("Cushion")) isHittingCushion = true;
+
+        if (hit.collider.CompareTag(pocket)) isHittingPocket = true;
+        else if (hit.collider.CompareTag(cushion)) isHittingCushion = true;
+
         StartCoroutine(MoveTheBall(hit.point, speedOfBall, draggedDirection));
     }
     IEnumerator MoveTheBall(Vector2 targetPosition, float speed, DraggedDirection draggedDirection)
@@ -64,7 +64,15 @@ public class BallMovement : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition;
-        if (isHittingPocket) { SoundManager.Instance.OnBallInHole(); tableManager.DeleteBall(gameObject); gameObject.SetActive(false); isHittingPocket = false; }
-        else if (isHittingCushion) { SoundManager.Instance.OnWallHit(); isHittingCushion = false; }
+        if (isHittingPocket) OnPocketHit();
+        else if (isHittingCushion) OnCushionHit();
+    }
+    private void OnCushionHit()
+    {
+        SoundManager.Instance.OnWallHit(); isHittingCushion = false;
+    }
+    private void OnPocketHit()
+    {
+        SoundManager.Instance.OnBallInHole(); tableManager.DeleteBall(gameObject); gameObject.SetActive(false); isHittingPocket = false;
     }
 }

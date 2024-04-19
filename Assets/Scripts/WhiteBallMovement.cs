@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public enum DraggedDirection
@@ -32,7 +33,7 @@ public class WhiteBallMovement : MonoBehaviour
     private void Awake()
     {
         levelManager = LevelManager.Instance;
-        if (levelManager == null) { Debug.Log("LvManager is Null"); }
+        //if (levelManager == null) { Debug.Log("LvManager is Null"); }
 
     }
     void Update()
@@ -95,19 +96,23 @@ public class WhiteBallMovement : MonoBehaviour
                 break;
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToFire, 15f, layerMask);
+
         if (hit.collider.TryGetComponent<BallMovement>(out var ballMovement))
         {
-            isHittingBall = true;
-            ballMovementScript = ballMovement;
+            isHittingBall = true; ballMovementScript = ballMovement;
         }
         else if (hit.collider.CompareTag(cushion))
         {
-            isHittingCushion = true;
-            cushionHit++;
-            if (cushionHit == 3) levelManager.CheckIfRespawnAvailable();
+            isHittingCushion = true; cushionHit++; if (cushionHit == 3) levelManager.CheckIfRespawnAvailable();
         }
         else if (hit.collider.CompareTag(pocket)) isHittingPocket = true;
-        stickScript.DisplayStick(transform.position, draggedDirection); SoundManager.Instance.OnShotPlay();
+
+        ShootTheBall(hit, draggedDirection);
+    }
+    private void ShootTheBall(RaycastHit2D hit, DraggedDirection draggedDirection)
+    {
+        stickScript.DisplayStick(transform.position, draggedDirection);
+        SoundManager.Instance.OnShotPlay();
         StartCoroutine(MoveWhiteBall(hit.point, speedOfBall, draggedDirection));
     }
     IEnumerator MoveWhiteBall(Vector2 targetPosition, float speed, DraggedDirection draggedDirection)
@@ -138,9 +143,21 @@ public class WhiteBallMovement : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition;
-        if (isHittingBall) { ballMovementScript?.FireRayCast(draggedDirection); isHittingBall = false; }
-        else if (isHittingCushion) { SoundManager.Instance.OnWallHit(); isHittingCushion = false; }
-        else if (isHittingPocket) { SoundManager.Instance.OnBallInHole(); levelManager.CheckIfRespawnAvailable(); isHittingPocket = false; gameObject.SetActive(false); }
+        if (isHittingBall) OnBallHit(draggedDirection);
+        else if (isHittingCushion) OnCushionHit();
+        else if (isHittingPocket) OnPocketHit();
         isCoroutineRunning = false;
+    }
+    private void OnBallHit(DraggedDirection draggedDirection)
+    {
+        ballMovementScript.FireRayCast(draggedDirection); isHittingBall = false;
+    }
+    private void OnCushionHit()
+    {
+        SoundManager.Instance.OnWallHit(); isHittingCushion = false;
+    }
+    private void OnPocketHit()
+    {
+        SoundManager.Instance.OnBallInHole(); levelManager.CheckIfRespawnAvailable(); isHittingPocket = false; gameObject.SetActive(false);
     }
 }
