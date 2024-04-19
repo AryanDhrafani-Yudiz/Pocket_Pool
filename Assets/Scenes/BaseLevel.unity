@@ -304,8 +304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d5e944f613d4812bc8df6a7ecfb407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  retryBtnTransform: {fileID: 1226989884}
-  retriesTxt: {fileID: 1426449257}
   poolLevels:
   - {fileID: 247894806314158120, guid: e8bf9ce8268c746bdb652c278b219bde, type: 3}
   - {fileID: 3700439727500897472, guid: 88a22a542de194437a025cb52718dd49, type: 3}
@@ -313,6 +311,8 @@ MonoBehaviour:
   - {fileID: 8473574456501185283, guid: ab4d66c2d341b4bb0a5249e78068ca92, type: 3}
   - {fileID: 8120800735344938708, guid: ae38a1fca06334c1a93da39be2e703fc, type: 3}
   disableUserInput: 0
+  retryBtnTransform: {fileID: 1226989884}
+  retriesTxt: {fileID: 1426449257}
 --- !u!1 &233008817
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,7 +2120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: 0
-  _playButton: {fileID: 1936435706}
+  playButton: {fileID: 1936435706}
 --- !u!1 &1349628195
 GameObject:
   m_ObjectHideFlags: 0
