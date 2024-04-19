@@ -22,21 +22,37 @@ public class AnimationController : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(ShineAnimation(shineTargetScale, timeToLerpShine));
         startingPos = stickTransform.position;
+        StartCoroutine(ShineAnimation(shineTargetScale, timeToLerpShine));
+        StartCoroutine(BallAnimation());
+        StartCoroutine(StickAnimation());
     }
-    private void Update()
+    public void StopAnimations()
     {
-        whiteBallTransform.Rotate(0f, 0f, -5 * timeToLerpWhiteBall * Time.deltaTime);
-
-        stickTransform.Translate(direction * speedToMoveStickX * Time.deltaTime, direction * speedToMoveStickY * Time.deltaTime, 0);
-        if (stickTransform.position.y > startingPos.y + unitsToMove)
+        StopAllCoroutines();
+    }
+    IEnumerator StickAnimation()
+    {
+        while (true)
         {
-            direction = 1;
+            stickTransform.Translate(direction * speedToMoveStickX * Time.deltaTime, direction * speedToMoveStickY * Time.deltaTime, 0);
+            if (stickTransform.position.y > startingPos.y + unitsToMove)
+            {
+                direction = 1;
+            }
+            else if (stickTransform.position.y < startingPos.y - unitsToMove)
+            {
+                direction = -1;
+            }
+            yield return null;
         }
-        else if (stickTransform.position.y < startingPos.y - unitsToMove)
+    }
+    IEnumerator BallAnimation()
+    {
+        while (true)
         {
-            direction = -1;
+            whiteBallTransform.Rotate(0f, 0f, -5 * timeToLerpWhiteBall * Time.deltaTime);
+            yield return null;
         }
     }
     IEnumerator ShineAnimation(float endScaleValue, float duration)

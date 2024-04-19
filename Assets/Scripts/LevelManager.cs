@@ -25,9 +25,9 @@ public class LevelManager : MonoBehaviour
         if (currTable != null) Destroy(currTable);
         if (currentLevel != poolLevels.Length)
         {
-            disableUserInput = false;
             SoundManager.Instance.OnLevelChange();
             currTable = Instantiate(poolLevels[currentLevel]);
+            disableUserInput = false;
             currentLevel++;
         }
         else
