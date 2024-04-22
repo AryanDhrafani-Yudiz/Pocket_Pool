@@ -5,6 +5,7 @@ using UnityEngine;
 public class TableManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> ballsOnTable;
+    [SerializeField] private float loadLevelDelay = 0.3f;
 
     public void DeleteBall(GameObject currentGameObject)
     {
@@ -15,7 +16,7 @@ public class TableManager : MonoBehaviour
     {
         if (ballsOnTable.Count == 0)
         {
-            LevelManager.Instance.disableUserInput = true;
+            WhiteBallMovement.userInputEnabled = false;
             StartCoroutine(LoadNewLevel());
             return true;
         }
@@ -23,7 +24,7 @@ public class TableManager : MonoBehaviour
     }
     IEnumerator LoadNewLevel()
     {
-        yield return new WaitForSecondsRealtime(0.3f);
+        yield return new WaitForSecondsRealtime(loadLevelDelay);
         LevelManager.Instance.SpawnNextLevel();
     }
 }

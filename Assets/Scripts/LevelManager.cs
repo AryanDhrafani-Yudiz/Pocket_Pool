@@ -4,7 +4,6 @@ using TMPro;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] poolLevels;
-    public bool disableUserInput = false;
 
     [SerializeField] private RectTransform retryBtnTransform;
     private Vector2 defaultSizeScale = Vector2.one;
@@ -28,14 +27,14 @@ public class LevelManager : MonoBehaviour
         SpawnNextLevel();
         gameOverScreen = UIManager.Instance.GetScreen(GameScreens.GameOver) as GameOverScreen;
     }
-    public void SpawnNextLevel()
+    public void SpawnNextLevel() // Spawns Next Level If Available Else Switches To Game Won Screen
     {
         if (currTable != null) Destroy(currTable);
         if (currentLevel != poolLevels.Length)
         {
             SoundManager.Instance.OnLevelChange();
             currTable = Instantiate(poolLevels[currentLevel]);
-            disableUserInput = false;
+            WhiteBallMovement.userInputEnabled = true;
             currentLevel++;
         }
         else
@@ -45,7 +44,7 @@ public class LevelManager : MonoBehaviour
             SoundManager.Instance.OnGameWon();
         }
     }
-    public void CheckIfRespawnAvailable()
+    public void CheckIfRetryAvailable() // To Check If Retry Is Available
     {
         if (retriesAmt > 0) ShowRetryBtn();
         else
@@ -55,19 +54,19 @@ public class LevelManager : MonoBehaviour
             SoundManager.Instance.OnGameOver();
         }
     }
-    public void ShowRetryBtn()
+    public void ShowRetryBtn() // Focus On Retry Button
     {
-        disableUserInput = true;
+        WhiteBallMovement.userInputEnabled = false;
         retryBtnTransform.localScale = increasedSizeScale;
     }
-    public void RespawnCurrentLevel()
+    public void RespawnCurrentLevel() // Respawns Current Level
     {
         if (retriesAmt > 0)
         {
             if (currTable != null) Destroy(currTable); currTable = Instantiate(poolLevels[currentLevel - 1]);
             retriesAmt--;
             retriesTxt.text = retriesAmt.ToString();
-            disableUserInput = false;
+            WhiteBallMovement.userInputEnabled = true;
             retryBtnTransform.localScale = defaultSizeScale;
         }
     }

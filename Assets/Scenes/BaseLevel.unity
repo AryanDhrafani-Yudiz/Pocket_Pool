@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 216560988}
   - component: {fileID: 216560989}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +315,6 @@ MonoBehaviour:
   - {fileID: 8063970304229454707, guid: eccf5927b92a34ce7b414b1064211b31, type: 3}
   - {fileID: 2296340269751314406, guid: 95e7a82ce0ee84cf79115ba084ad21f6, type: 3}
   - {fileID: 2232193476342107613, guid: dcf58f5f58257434b981b3360098a3c7, type: 3}
-  disableUserInput: 0
   retryBtnTransform: {fileID: 1226989884}
   retriesTxt: {fileID: 1426449257}
 --- !u!1 &233008817
@@ -480,6 +479,7 @@ GameObject:
   - component: {fileID: 350614491}
   - component: {fileID: 350614490}
   - component: {fileID: 350614492}
+  - component: {fileID: 350614493}
   m_Layer: 5
   m_Name: VolumeBtn
   m_TagString: Untagged
@@ -588,6 +588,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &350614493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350614488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4c0a4234dfc4217be0d9f1f1b3db8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 350614492}
+  targetScale: {x: 1.2, y: 1.2, z: 0}
 --- !u!1 &358276760
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +689,7 @@ GameObject:
   - component: {fileID: 413940699}
   - component: {fileID: 413940698}
   - component: {fileID: 413940700}
+  - component: {fileID: 413940701}
   m_Layer: 5
   m_Name: PlayAgainBtn
   m_TagString: Untagged
@@ -783,6 +798,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &413940701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413940696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4c0a4234dfc4217be0d9f1f1b3db8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 413940700}
+  targetScale: {x: 1.2, y: 1.2, z: 0}
 --- !u!1 &476383985
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +899,7 @@ GameObject:
   - component: {fileID: 505722247}
   - component: {fileID: 505722246}
   m_Layer: 5
-  m_Name: PocketPoolImg
+  m_Name: PocketPoolLogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2498,6 +2527,7 @@ GameObject:
   - component: {fileID: 1936435705}
   - component: {fileID: 1936435704}
   - component: {fileID: 1936435706}
+  - component: {fileID: 1936435707}
   m_Layer: 5
   m_Name: StartBtn
   m_TagString: Untagged
@@ -2575,7 +2605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2606,6 +2636,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1936435707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936435702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4c0a4234dfc4217be0d9f1f1b3db8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 1936435706}
+  targetScale: {x: 1.2, y: 1.2, z: 1}
 --- !u!1 &2062918017
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,7 +2662,7 @@ GameObject:
   - component: {fileID: 2062918020}
   - component: {fileID: 2062918019}
   m_Layer: 5
-  m_Name: StickImg
+  m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

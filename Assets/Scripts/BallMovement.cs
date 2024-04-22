@@ -19,6 +19,7 @@ public class BallMovement : MonoBehaviour
 
     public void FireRayCast(DraggedDirection draggedDirection)
     {
+        WhiteBallMovement.userInputEnabled = false;
         switch (draggedDirection)
         {
             case DraggedDirection.Up:
@@ -73,11 +74,12 @@ public class BallMovement : MonoBehaviour
     }
     private void OnCushionHit()
     {
-        SoundManager.Instance.OnWallHit(); isHittingCushion = false;
+        SoundManager.Instance.OnWallHit(); isHittingCushion = false; WhiteBallMovement.userInputEnabled = true;
     }
     private void OnPocketHit()
     {
         SoundManager.Instance.OnBallInHole(); tableManager.DeleteBall(gameObject);
-        gameObject.SetActive(false); isHittingPocket = false;
+        isHittingPocket = false; WhiteBallMovement.userInputEnabled = true;
+        gameObject.SetActive(false);
     }
 }

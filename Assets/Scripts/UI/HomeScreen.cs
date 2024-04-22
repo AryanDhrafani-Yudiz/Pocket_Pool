@@ -9,7 +9,7 @@ public class HomeScreen : BaseScreen
     {
         playButton.onClick.AddListener(OnPlay);
     }
-    void OnPlay()
+    private void OnPlay()
     {
         UIManager.Instance.SwitchScreen(GameScreens.Play);
     }

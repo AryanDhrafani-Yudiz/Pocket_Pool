@@ -19,7 +19,7 @@ public class WhiteBallMovement : MonoBehaviour
     private Vector2 directionToFire;
     private readonly float rayCastDistance = 15f;
 
-    public static bool isCoroutineRunning;
+    public static bool userInputEnabled = true;
     private bool isHittingBall;
     private bool isHittingCushion;
     private bool isHittingPocket;
@@ -32,36 +32,33 @@ public class WhiteBallMovement : MonoBehaviour
     private SoundManager soundManager;
     private BallMovement ballMovementScript;
 
-    private void Awake()
+    private void Start()
     {
         levelManager = LevelManager.Instance;
         soundManager = SoundManager.Instance;
     }
     void Update()
     {
-        GetUserInput();
+        if (userInputEnabled) GetUserInput();
     }
     private void GetUserInput()
     {
-        if (!isCoroutineRunning && !levelManager.disableUserInput)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
             {
-                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
-                {
-                    startingPos = Input.mousePosition;
-                }
+                startingPos = Input.mousePosition;
             }
-            else if (Input.GetMouseButtonUp(0))
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 5f && startingPos != Vector2.zero)
             {
-                if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 5f && startingPos != Vector2.zero)
-                {
-                    endingPos = Input.mousePosition;
-                    Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
-                    if (dragVectorDirection != Vector3.zero) GetDragDirection(dragVectorDirection);
-                }
-                startingPos = Vector2.zero;
+                endingPos = Input.mousePosition;
+                Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
+                if (dragVectorDirection != Vector3.zero) GetDragDirection(dragVectorDirection);
             }
+            startingPos = Vector2.zero;
         }
     }
     private void GetDragDirection(Vector3 dragVector)
@@ -81,6 +78,7 @@ public class WhiteBallMovement : MonoBehaviour
     }
     private void FireRayCast(DraggedDirection draggedDirection)
     {
+        userInputEnabled = false;
         switch (draggedDirection)
         {
             case DraggedDirection.Up:
@@ -104,10 +102,9 @@ public class WhiteBallMovement : MonoBehaviour
         }
         else if (hit.collider.CompareTag(cushion))
         {
-            isHittingCushion = true; cushionHit++; if (cushionHit == 5) levelManager.CheckIfRespawnAvailable();
+            isHittingCushion = true; cushionHit++; if (cushionHit == 5) levelManager.CheckIfRetryAvailable();
         }
         else if (hit.collider.CompareTag(pocket)) isHittingPocket = true;
-
         ShootTheBall(hit, draggedDirection);
     }
     private void ShootTheBall(RaycastHit2D hit, DraggedDirection draggedDirection)
@@ -118,7 +115,6 @@ public class WhiteBallMovement : MonoBehaviour
     }
     IEnumerator MoveWhiteBall(Vector2 targetPosition, float speed, DraggedDirection draggedDirection)
     {
-        isCoroutineRunning = true;
         float time = 0;
         Vector2 startPosition = transform.position;
         switch (draggedDirection)
@@ -147,7 +143,6 @@ public class WhiteBallMovement : MonoBehaviour
         if (isHittingBall) OnBallHit(draggedDirection);
         else if (isHittingCushion) OnCushionHit();
         else if (isHittingPocket) OnPocketHit();
-        isCoroutineRunning = false;
     }
     private void OnBallHit(DraggedDirection draggedDirection)
     {
@@ -155,11 +150,11 @@ public class WhiteBallMovement : MonoBehaviour
     }
     private void OnCushionHit()
     {
-        soundManager.OnWallHit(); isHittingCushion = false;
+        soundManager.OnWallHit(); isHittingCushion = false; userInputEnabled = true;
     }
     private void OnPocketHit()
     {
-        soundManager.OnBallInHole(); levelManager.CheckIfRespawnAvailable();
+        soundManager.OnBallInHole(); levelManager.CheckIfRetryAvailable();
         isHittingPocket = false; gameObject.SetActive(false);
     }
 }
