@@ -22,6 +22,9 @@ public class LevelManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
+    }
+    private void Start()
+    {
         SpawnNextLevel();
         gameOverScreen = UIManager.Instance.GetScreen(GameScreens.GameOver) as GameOverScreen;
     }

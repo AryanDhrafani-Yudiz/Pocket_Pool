@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
         Application.targetFrameRate = 120;
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
+    }
+    private void Start()
+    {
         _currentScreen.ActivateScreen();
     }
     public void SwitchScreen(GameScreens screen)
