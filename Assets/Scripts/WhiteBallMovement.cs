@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum DraggedDirection
 {
@@ -39,7 +40,7 @@ public class WhiteBallMovement : MonoBehaviour
     }
     void Update()
     {
-        if (userInputEnabled) GetUserInput();
+        if (userInputEnabled && !EventSystem.current.IsPointerOverGameObject()) GetUserInput();
     }
     private void GetUserInput()
     {

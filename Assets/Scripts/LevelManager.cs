@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
         if (currTable != null) Destroy(currTable);
         if (currentLevel != poolLevels.Length)
         {
-            SoundManager.Instance.OnLevelChange();
+            if (currentLevel > 0) SoundManager.Instance.OnLevelChange();
             currTable = Instantiate(poolLevels[currentLevel]);
             WhiteBallMovement.userInputEnabled = true;
             currentLevel++;
@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             UIManager.Instance.SwitchScreen(GameScreens.GameOver);
-            if (gameOverScreen) gameOverScreen.IsGameWin(true);
+            if (gameOverScreen != null) gameOverScreen.IsGameWin(true);
             SoundManager.Instance.OnGameWon();
         }
     }
@@ -50,11 +50,11 @@ public class LevelManager : MonoBehaviour
         else
         {
             UIManager.Instance.SwitchScreen(GameScreens.GameOver);
-            if (gameOverScreen) gameOverScreen.IsGameWin(false);
+            if (gameOverScreen != null) gameOverScreen.IsGameWin(false);
             SoundManager.Instance.OnGameOver();
         }
     }
-    public void ShowRetryBtn() // Focus On Retry Button
+    private void ShowRetryBtn() // Focus On Retry Button
     {
         WhiteBallMovement.userInputEnabled = false;
         retryBtnTransform.localScale = increasedSizeScale;
