@@ -45,14 +45,14 @@ public class WhiteBallMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5f)
+            if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 1f)
             {
                 startingPos = Input.mousePosition;
             }
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 5f && startingPos != Vector2.zero)
+            if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 10f && startingPos != Vector2.zero)
             {
                 endingPos = Input.mousePosition;
                 Vector3 dragVectorDirection = (endingPos - startingPos).normalized;
@@ -74,11 +74,10 @@ public class WhiteBallMovement : MonoBehaviour
         {
             draggedDir = (dragVector.y > 0) ? DraggedDirection.Up : DraggedDirection.Down;
         }
-        FireRayCast(draggedDir);
+        userInputEnabled = false; FireRayCast(draggedDir);
     }
     private void FireRayCast(DraggedDirection draggedDirection)
     {
-        userInputEnabled = false;
         switch (draggedDirection)
         {
             case DraggedDirection.Up:
@@ -102,7 +101,7 @@ public class WhiteBallMovement : MonoBehaviour
         }
         else if (hit.collider.CompareTag(cushion))
         {
-            isHittingCushion = true; cushionHit++; if (cushionHit == 5) levelManager.CheckIfRetryAvailable();
+            isHittingCushion = true; cushionHit++;
         }
         else if (hit.collider.CompareTag(pocket)) isHittingPocket = true;
         ShootTheBall(hit, draggedDirection);
@@ -140,6 +139,7 @@ public class WhiteBallMovement : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition;
+        userInputEnabled = true;
         if (isHittingBall) OnBallHit(draggedDirection);
         else if (isHittingCushion) OnCushionHit();
         else if (isHittingPocket) OnPocketHit();
@@ -150,7 +150,8 @@ public class WhiteBallMovement : MonoBehaviour
     }
     private void OnCushionHit()
     {
-        soundManager.OnWallHit(); isHittingCushion = false; userInputEnabled = true;
+        soundManager.OnWallHit(); isHittingCushion = false;
+        if (cushionHit == 5) levelManager.CheckIfRetryAvailable();
     }
     private void OnPocketHit()
     {

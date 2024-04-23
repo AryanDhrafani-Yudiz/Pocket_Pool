@@ -71,15 +71,15 @@ public class BallMovement : MonoBehaviour
         transform.position = targetPosition;
         if (isHittingPocket) OnPocketHit();
         else if (isHittingCushion) OnCushionHit();
+        WhiteBallMovement.userInputEnabled = true;
     }
     private void OnCushionHit()
     {
-        SoundManager.Instance.OnWallHit(); isHittingCushion = false; WhiteBallMovement.userInputEnabled = true;
+        SoundManager.Instance.OnWallHit(); isHittingCushion = false;
     }
     private void OnPocketHit()
     {
         SoundManager.Instance.OnBallInHole(); tableManager.DeleteBall(gameObject);
-        isHittingPocket = false; WhiteBallMovement.userInputEnabled = true;
-        gameObject.SetActive(false);
+        isHittingPocket = false; gameObject.SetActive(false);
     }
 }

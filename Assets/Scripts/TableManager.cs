@@ -12,15 +12,13 @@ public class TableManager : MonoBehaviour
         ballsOnTable.Remove(currentGameObject);
         IsListEmpty();
     }
-    private bool IsListEmpty()
+    private void IsListEmpty()
     {
         if (ballsOnTable.Count == 0)
         {
             WhiteBallMovement.userInputEnabled = false;
             StartCoroutine(LoadNewLevel());
-            return true;
         }
-        else return false;
     }
     IEnumerator LoadNewLevel()
     {
